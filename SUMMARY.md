@@ -1,5 +1,3 @@
-# Summary
-
 ## Para empezar
 
 * [Primero](01-getting-started.md)
