@@ -24,16 +24,16 @@ let mut variable = mutableValue
 String::new() // Creates a new empty string
 ```
 
-> String string type from std library. Growable, UTF-8 encode bit of text
->
-> ::new Indicates that new is an `associated function` of the String type, rather than on an instance. "static method"
+String string type from std library. Growable, UTF-8 encode bit of text
+
+`::new` Indicates that new is an `associated function` of the String type, rather than on an instance. "static method"
 
 ```rust
 function(& variable)
 function(&mut variable)
 ```
 
-> & Indicates we are passing a reference instead a variable. references allow multiple parts of your code access one piece of data without needing to copy that data into memory multiple times. As variables, references are immutable by default. `&mut` to change that.
+& Indicates we are passing a reference instead a variable. references allow multiple parts of your code access one piece of data without needing to copy that data into memory multiple times. As variables, references are immutable by default. `&mut` to change that.
 
 `enums` is a type that can have a fixed set of values.
 
@@ -57,21 +57,3 @@ printl!("Panda {}, Pig {}", panda, pig)
 ```
 
 To print variables we use `{}` to indicate the position where the value will be inserted.
-
-`crate` &gt; package of rust code. Extra functionality ! crates.io is where you can publish crates.
-
-To add a a crate in our project we update the \[dependencies\] section in the toml file.
-
-```text
-[dependencies]
-crate_name = "sem.ver"
-```
-
-After a crate is installed and compiled the `cargo.lock` file is updated. This will garantee reproducible builds everywhere everytime. If you want to update the crates verison run
-
-```text
-cargo update
-```
-
-But it will only update minor versions. if the package has a major release, update your `.toml` file maually.
-
