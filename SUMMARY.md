@@ -4,10 +4,10 @@
 
 ## Para empezar
 
-* [Primero](para-empezar/01-primero.md)
-* [Cargo](para-empezar/02-cargo.md)
-* [Adivinando](para-empezar/03-guessing-game.md)
+* [Primero](para-empezar/primero.md)
+* [Cargo](para-empezar/cargo.md)
 
 ## Conceptos básicos
-* [Variables](conceptos/04-variables.md)
-* [Tipos de datos](conceptos/05-tipos-de-datos.md)
+* [Variables](conceptos/variables.md)
+* [Tipos de datos](conceptos/tipos-de-datos.md)
+* [Funciones](conceptos/funciones.md)
