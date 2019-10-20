@@ -1,3 +1,4 @@
+```rust
 use std::io;
 
 fn main() {
@@ -45,14 +46,4 @@ fn c_to_f(temp_c: f64) -> f64 {
 fn f_to_c(temp_f: f64) -> f64 {
     (temp_f - 32.0) * (5.0 / 9.0)
 }
-ol) -> String {
-  if index == 0 {
-    if is_listing {
-      format!("and a {}", items[index])
-    } else {
-      format!("A {}", items[index])
-    }
-  } else {
-    format!("{} {}", index + 1, items[index])
-  }
-}
+```

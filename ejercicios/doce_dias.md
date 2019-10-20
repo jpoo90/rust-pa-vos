@@ -1,3 +1,4 @@
+```rust
 fn main() {
   let mut items = [
     "Drummers Drumming",
@@ -58,3 +59,4 @@ fn print_song_line(items: [&str; 12], index: usize, is_listing: bool) -> String 
     format!("{} {}", index + 1, items[index])
   }
 }
+```

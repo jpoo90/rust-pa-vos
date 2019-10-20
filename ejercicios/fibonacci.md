@@ -1,3 +1,4 @@
+```rust
 // Generate the nth fibonacci number.
 use std::io;
 
@@ -47,3 +48,4 @@ fn get_fib_bottom_up(requested_fib: u32) -> u32 {
         flags.1
     }
 }
+```
