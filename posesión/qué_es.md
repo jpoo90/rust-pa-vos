@@ -93,3 +93,43 @@ Para soportar texto que puede cambiar necesitamos usar el heap. Esto implica:
 
     Una vez el contexto termina, en `}`, Rust llama automáticamente la función `drop`. 
     `drop` es donde el autor de `String` puede poner el código para liberar la memoria. (RAII en C++)
+
+
+
+## Interacción entre variables y datos
+
+Múltiples variables pueden interactuar con los mismos datos de diferentes maneras. Lo que pasa en memoria varia de acuerdo a la manera que decidimos manipular los datos.
+
+### Mover
+```rust
+let x = 10;
+let y = x;
+```
+
+Este código asigna 10 a `x`, luego hace una copia de `x` y lo asigna a `y`. Como los enteros son valores simples, con tamaño fijo `x` y `y` son agregados al stack.
+
+```rust
+let s1 = String::from("Hola");
+let s2 = s1;
+```
+
+Aunque este código es similar al anterior, lo que pasa en memoria es bastante diferente. 
+Una `String` tiene tres partes que son agrupadas y guardadas en el stack: 
+
+1. Un puntero a la memoria con el contenido. El contenido es guardado en el heap. 
+1. La longitud. _bytes_ de memoria que el contenido de `String` esta usando actualmente.
+1. La capacidad. _bytes_ en memoria que `String` recibió del sistema operativo.
+
+Cuando asignamos `s1` a `s2` , los datos de `String` en el stack son copiados. Los datos a los que el puntero apunta en el heap _NO_. Si Rust hiciera esto, la operación `s2 = s1` sería muy costosa en tiempo de ejecución y el rendimiento se vería deteriorado si los datos en el heap son grandes. 
+
+![memoria al mover variables](./memory_on_move.jpeg)
+Memoria al mover variables.
+
+Para garantizar seguridad en memoria, Rust considera que `s1` ya no es válido. Esto es lo que llamamos `Mover` (move) en Rust. En este ejemplo diríamos que `s1` fue movida a `s2`.
+`Mover` variables nos permite: 
+- Garantizar que solo liberaremos memoria una vez. 
+- Nunca crear copias "profundas" (deep) de datos.
+
+### Clonar 
+
+### Copiar
