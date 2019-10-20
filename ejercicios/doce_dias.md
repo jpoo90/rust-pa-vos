@@ -27,7 +27,7 @@ fn main() {
     "fifth",
     "fourth",
     "third",
-    "items_index",
+    "second",
     "first",
   ];
 

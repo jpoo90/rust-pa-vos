@@ -78,8 +78,35 @@ fn main () {
     contador = contador - 1; 
   }
   println!("🚀");
-
-
 }
 ```
+
 ## for
+
+Este el formato más común en Rust para crear ciclos. 
+Nos brinda más seguridad y concisión al escribir nuestro código. 
+
+Por ejemplo, podemos obtener el mismo resultado del ejemplo usando `while` de una manera más simple:
+
+```rust 
+fn main () {
+  // (1..4) Range. HAce parte de la librería estándar.
+  // rev() reordena los elementos en el rango. 
+  for contador in (1..4).rev() {
+    println!("{}!", contador);
+  }
+  
+  println!("🚀");
+}
+```
+
+Si queremos iterar sobre un arreglo: 
+
+```rust
+fn main() {
+  let datos = [90, 07, 10];
+
+  for d in datos.iter() {
+    println!("{}!", d);
+  }
+}
