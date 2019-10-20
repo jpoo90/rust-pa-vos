@@ -13,6 +13,9 @@
 * [Funciones](conceptos/funciones.md)
 * [Control de flujo](conceptos/control_de_flujo.md)
 
+## Posesión
+* [Qué es?](posesión/qué_es.md)
+
 ## Ejercicios
 * [Adivinar](ejercicios/adivinar.md)
 * [Temperatura](ejercicios/temperatura.md)
