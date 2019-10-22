@@ -122,14 +122,53 @@ Una `String` tiene tres partes que son agrupadas y guardadas en el stack:
 
 Cuando asignamos `s1` a `s2` , los datos de `String` en el stack son copiados. Los datos a los que el puntero apunta en el heap _NO_. Si Rust hiciera esto, la operación `s2 = s1` sería muy costosa en tiempo de ejecución y el rendimiento se vería deteriorado si los datos en el heap son grandes. 
 
-![memoria al mover variables](./memory_on_move.jpeg)
+![memoria al mover variables](./memory_on_move.jpg)
 Memoria al mover variables.
 
-Para garantizar seguridad en memoria, Rust considera que `s1` ya no es válido. Esto es lo que llamamos `Mover` (move) en Rust. En este ejemplo diríamos que `s1` fue movida a `s2`.
-`Mover` variables nos permite: 
+Para garantizar seguridad en memoria, el compilador considera que `s1` ya no es válido. Esto es lo que llamamos `Mover` (move) en Rust. En este ejemplo diríamos que `s1` fue movida a `s2`.
+Si tratamos de usar `s1` después de asignar `s2`, el compilador nos mostrara un error:
+```shell
+error[E0382]: borrow of moved value: `s1`
+ --> src/main.rs:5:26
+  |
+2 |   let s1 = String::from("hola");
+  |       -- move occurs because `s1` has type `std::string::String`, which does not implement the `Copy` trait
+3 |   let s2 = s1;
+  |            -- value moved here
+4 |
+5 |   println!("{} 💀!", s1);
+  |                          ^^ value borrowed here after move
+```
+__Mover__ variables nos permite: 
 - Garantizar que solo liberaremos memoria una vez. 
 - Nunca crear copias "profundas" (deep) de datos.
 
 ### Clonar 
 
+Si queremos copiar los datos en el heap, podemos utilizar el método `clone`. En este caso sabemos que el código ejecutado puede que no tenga un buen rendimiento. 
+
+```rust
+let s1 = String::from("Hola");
+let s2 = s1.clone();
+```
+
+![memoria al clonar una variable](./memory_on_clone.jpg)
+Memoria al clonar una variable.
+
 ### Copiar
+
+Rust copia valores que estan guardados en el stack, por ejemplo los enteros. Algunas reglas para los tipos que pueden ser copiados: 
+- podemos usar la variable original después de crear una copia
+- conocemos su tamaño a la hora de compilar.
+- el tipo no tiene implementado el rasgo (trait) `drop`.
+Si esto pasa el compilador capturará el error.
+
+Tipos que podemos copiar:
+- Enteros 
+- Flotantes
+- Booleanos 
+- caracteres 
+- Tuplas que contienen tipos que se pueden copiar.
+  ✅ `(u32, u32)`  🚫`(u32, String)`
+
+
